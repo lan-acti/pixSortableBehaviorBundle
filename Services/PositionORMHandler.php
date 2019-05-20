@@ -65,7 +65,7 @@ class PositionORMHandler extends PositionHandler
         if (!isset(self::$cacheLastPosition[$cacheKey])) {
             $qb = $this->em->createQueryBuilder()
                 ->select(sprintf('MAX(t.%s) as last_position', $this->getPositionFieldByEntity($entityClass)))
-                ->from($entityClass, 't')
+                ->from(ClassUtils::getClass($entity), 't')
             ;
 
             if ($groups) {
